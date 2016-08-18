@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListOrdenesproduccionEntityEmpty}" rendered="#{ordenesproduccionEntityController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ordenesproduccionEntityController.items.rowCount > 0}">
+                    <h:outputText value="#{ordenesproduccionEntityController.pagination.pageFirstItem + 1}..#{ordenesproduccionEntityController.pagination.pageLastItem + 1}/#{ordenesproduccionEntityController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ordenesproduccionEntityController.previous}" value="#{bundle.Previous} #{ordenesproduccionEntityController.pagination.pageSize}" rendered="#{ordenesproduccionEntityController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ordenesproduccionEntityController.next}" value="#{bundle.Next} #{ordenesproduccionEntityController.pagination.pageSize}" rendered="#{ordenesproduccionEntityController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ordenesproduccionEntityController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_idOrdenProduccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOrdenProduccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_cantidadGenerar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidadGenerar}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_fecHoraInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecHoraInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_fecHoraFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecHoraFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_cantResiduo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantResiduo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_cantDefecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantDefecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_defectuosos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.defectuosos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_residuo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.residuo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_usuarioProduccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioProduccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesproduccionEntityTitle_maquinasidMaquina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.maquinasidMaquina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ordenesproduccionEntityController.prepareView}" value="#{bundle.ListOrdenesproduccionEntityViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ordenesproduccionEntityController.prepareEdit}" value="#{bundle.ListOrdenesproduccionEntityEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ordenesproduccionEntityController.destroy}" value="#{bundle.ListOrdenesproduccionEntityDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ordenesproduccionEntityController.prepareCreate}" value="#{bundle.ListOrdenesproduccionEntityCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListOrdenesproduccionEntityIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

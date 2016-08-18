@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOrdenesproduccionEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_idOrdenProduccion}" for="idOrdenProduccion" />
+                    <h:inputText id="idOrdenProduccion" value="#{ordenesproduccionEntityController.selected.idOrdenProduccion}" title="#{bundle.CreateOrdenesproduccionEntityTitle_idOrdenProduccion}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_idOrdenProduccion}"/>
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_cantidadGenerar}" for="cantidadGenerar" />
+                    <h:inputText id="cantidadGenerar" value="#{ordenesproduccionEntityController.selected.cantidadGenerar}" title="#{bundle.CreateOrdenesproduccionEntityTitle_cantidadGenerar}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_cantidadGenerar}"/>
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_fecHoraInicio}" for="fecHoraInicio" />
+                    <h:inputText id="fecHoraInicio" value="#{ordenesproduccionEntityController.selected.fecHoraInicio}" title="#{bundle.CreateOrdenesproduccionEntityTitle_fecHoraInicio}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_fecHoraInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_fecHoraFin}" for="fecHoraFin" />
+                    <h:inputText id="fecHoraFin" value="#{ordenesproduccionEntityController.selected.fecHoraFin}" title="#{bundle.CreateOrdenesproduccionEntityTitle_fecHoraFin}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_fecHoraFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_cantResiduo}" for="cantResiduo" />
+                    <h:inputText id="cantResiduo" value="#{ordenesproduccionEntityController.selected.cantResiduo}" title="#{bundle.CreateOrdenesproduccionEntityTitle_cantResiduo}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_cantResiduo}"/>
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_cantDefecto}" for="cantDefecto" />
+                    <h:inputText id="cantDefecto" value="#{ordenesproduccionEntityController.selected.cantDefecto}" title="#{bundle.CreateOrdenesproduccionEntityTitle_cantDefecto}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_cantDefecto}"/>
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_defectuosos}" for="defectuosos" />
+                    <h:selectOneMenu id="defectuosos" value="#{ordenesproduccionEntityController.selected.defectuosos}" title="#{bundle.CreateOrdenesproduccionEntityTitle_defectuosos}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_defectuosos}">
+                        <f:selectItems value="#{defectuosoEntityController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_residuo}" for="residuo" />
+                    <h:selectOneMenu id="residuo" value="#{ordenesproduccionEntityController.selected.residuo}" title="#{bundle.CreateOrdenesproduccionEntityTitle_residuo}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_residuo}">
+                        <f:selectItems value="#{residuoEntityController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_usuarioProduccion}" for="usuarioProduccion" />
+                    <h:selectOneMenu id="usuarioProduccion" value="#{ordenesproduccionEntityController.selected.usuarioProduccion}" title="#{bundle.CreateOrdenesproduccionEntityTitle_usuarioProduccion}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_usuarioProduccion}">
+                        <f:selectItems value="#{usuarioEntityController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrdenesproduccionEntityLabel_maquinasidMaquina}" for="maquinasidMaquina" />
+                    <h:selectOneMenu id="maquinasidMaquina" value="#{ordenesproduccionEntityController.selected.maquinasidMaquina}" title="#{bundle.CreateOrdenesproduccionEntityTitle_maquinasidMaquina}" required="true" requiredMessage="#{bundle.CreateOrdenesproduccionEntityRequiredMessage_maquinasidMaquina}">
+                        <f:selectItems value="#{maquinaEntityController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ordenesproduccionEntityController.create}" value="#{bundle.CreateOrdenesproduccionEntitySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ordenesproduccionEntityController.prepareList}" value="#{bundle.CreateOrdenesproduccionEntityShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateOrdenesproduccionEntityIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

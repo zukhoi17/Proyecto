@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPermisoEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPermisoEntityLabel_idMod}"/>
+                    <h:outputText value="#{permisoEntityController.selected.idMod}" title="#{bundle.ViewPermisoEntityTitle_idMod}"/>
+                    <h:outputText value="#{bundle.ViewPermisoEntityLabel_nombre}"/>
+                    <h:outputText value="#{permisoEntityController.selected.nombre}" title="#{bundle.ViewPermisoEntityTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewPermisoEntityLabel_descripcion}"/>
+                    <h:outputText value="#{permisoEntityController.selected.descripcion}" title="#{bundle.ViewPermisoEntityTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewPermisoEntityLabel_url}"/>
+                    <h:outputText value="#{permisoEntityController.selected.url}" title="#{bundle.ViewPermisoEntityTitle_url}"/>
+                    <h:outputText value="#{bundle.ViewPermisoEntityLabel_permisosidMod}"/>
+                    <h:outputText value="#{permisoEntityController.selected.permisosidMod}" title="#{bundle.ViewPermisoEntityTitle_permisosidMod}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{permisoEntityController.destroyAndView}" value="#{bundle.ViewPermisoEntityDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPermisoEntityEditLink}"/>
+                <br />
+                <h:commandLink action="#{permisoEntityController.prepareCreate}" value="#{bundle.ViewPermisoEntityCreateLink}" />
+                <br />
+                <h:commandLink action="#{permisoEntityController.prepareList}" value="#{bundle.ViewPermisoEntityShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPermisoEntityIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMaquinaEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMaquinaEntityEmpty}" rendered="#{maquinaEntityController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{maquinaEntityController.items.rowCount > 0}">
+                    <h:outputText value="#{maquinaEntityController.pagination.pageFirstItem + 1}..#{maquinaEntityController.pagination.pageLastItem + 1}/#{maquinaEntityController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{maquinaEntityController.previous}" value="#{bundle.Previous} #{maquinaEntityController.pagination.pageSize}" rendered="#{maquinaEntityController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{maquinaEntityController.next}" value="#{bundle.Next} #{maquinaEntityController.pagination.pageSize}" rendered="#{maquinaEntityController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{maquinaEntityController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMaquinaEntityTitle_idMaquina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMaquina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMaquinaEntityTitle_nombreMaquina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreMaquina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMaquinaEntityTitle_tipoMaquina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoMaquina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMaquinaEntityTitle_tipoProceso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoProceso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{maquinaEntityController.prepareView}" value="#{bundle.ListMaquinaEntityViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{maquinaEntityController.prepareEdit}" value="#{bundle.ListMaquinaEntityEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{maquinaEntityController.destroy}" value="#{bundle.ListMaquinaEntityDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{maquinaEntityController.prepareCreate}" value="#{bundle.ListMaquinaEntityCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMaquinaEntityIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMaquinaEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMaquinaEntityLabel_idMaquina}" for="idMaquina" />
+                    <h:inputText id="idMaquina" value="#{maquinaEntityController.selected.idMaquina}" title="#{bundle.CreateMaquinaEntityTitle_idMaquina}" required="true" requiredMessage="#{bundle.CreateMaquinaEntityRequiredMessage_idMaquina}"/>
+                    <h:outputLabel value="#{bundle.CreateMaquinaEntityLabel_nombreMaquina}" for="nombreMaquina" />
+                    <h:inputText id="nombreMaquina" value="#{maquinaEntityController.selected.nombreMaquina}" title="#{bundle.CreateMaquinaEntityTitle_nombreMaquina}" required="true" requiredMessage="#{bundle.CreateMaquinaEntityRequiredMessage_nombreMaquina}"/>
+                    <h:outputLabel value="#{bundle.CreateMaquinaEntityLabel_tipoMaquina}" for="tipoMaquina" />
+                    <h:inputText id="tipoMaquina" value="#{maquinaEntityController.selected.tipoMaquina}" title="#{bundle.CreateMaquinaEntityTitle_tipoMaquina}" required="true" requiredMessage="#{bundle.CreateMaquinaEntityRequiredMessage_tipoMaquina}"/>
+                    <h:outputLabel value="#{bundle.CreateMaquinaEntityLabel_tipoProceso}" for="tipoProceso" />
+                    <h:inputText id="tipoProceso" value="#{maquinaEntityController.selected.tipoProceso}" title="#{bundle.CreateMaquinaEntityTitle_tipoProceso}" required="true" requiredMessage="#{bundle.CreateMaquinaEntityRequiredMessage_tipoProceso}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{maquinaEntityController.create}" value="#{bundle.CreateMaquinaEntitySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{maquinaEntityController.prepareList}" value="#{bundle.CreateMaquinaEntityShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateMaquinaEntityIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

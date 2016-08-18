@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPermisoEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPermisoEntityLabel_idMod}" for="idMod" />
+                    <h:inputText id="idMod" value="#{permisoEntityController.selected.idMod}" title="#{bundle.EditPermisoEntityTitle_idMod}" required="true" requiredMessage="#{bundle.EditPermisoEntityRequiredMessage_idMod}"/>
+                    <h:outputLabel value="#{bundle.EditPermisoEntityLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{permisoEntityController.selected.nombre}" title="#{bundle.EditPermisoEntityTitle_nombre}" required="true" requiredMessage="#{bundle.EditPermisoEntityRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditPermisoEntityLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{permisoEntityController.selected.descripcion}" title="#{bundle.EditPermisoEntityTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.EditPermisoEntityLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{permisoEntityController.selected.url}" title="#{bundle.EditPermisoEntityTitle_url}" />
+                    <h:outputLabel value="#{bundle.EditPermisoEntityLabel_permisosidMod}" for="permisosidMod" />
+                    <h:selectOneMenu id="permisosidMod" value="#{permisoEntityController.selected.permisosidMod}" title="#{bundle.EditPermisoEntityTitle_permisosidMod}" required="true" requiredMessage="#{bundle.EditPermisoEntityRequiredMessage_permisosidMod}">
+                        <f:selectItems value="#{permisoEntityController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{permisoEntityController.update}" value="#{bundle.EditPermisoEntitySaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPermisoEntityViewLink}"/>
+                <br />
+                <h:commandLink action="#{permisoEntityController.prepareList}" value="#{bundle.EditPermisoEntityShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPermisoEntityIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

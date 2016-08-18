@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEstadomaqEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEstadomaqEntityEmpty}" rendered="#{estadomaqEntityController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{estadomaqEntityController.items.rowCount > 0}">
+                    <h:outputText value="#{estadomaqEntityController.pagination.pageFirstItem + 1}..#{estadomaqEntityController.pagination.pageLastItem + 1}/#{estadomaqEntityController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{estadomaqEntityController.previous}" value="#{bundle.Previous} #{estadomaqEntityController.pagination.pageSize}" rendered="#{estadomaqEntityController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{estadomaqEntityController.next}" value="#{bundle.Next} #{estadomaqEntityController.pagination.pageSize}" rendered="#{estadomaqEntityController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{estadomaqEntityController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadomaqEntityTitle_idEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEstado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadomaqEntityTitle_abreviatura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.abreviatura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadomaqEntityTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{estadomaqEntityController.prepareView}" value="#{bundle.ListEstadomaqEntityViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estadomaqEntityController.prepareEdit}" value="#{bundle.ListEstadomaqEntityEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estadomaqEntityController.destroy}" value="#{bundle.ListEstadomaqEntityDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{estadomaqEntityController.prepareCreate}" value="#{bundle.ListEstadomaqEntityCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEstadomaqEntityIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

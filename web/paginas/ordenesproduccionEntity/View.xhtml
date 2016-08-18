@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOrdenesproduccionEntityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_idOrdenProduccion}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.idOrdenProduccion}" title="#{bundle.ViewOrdenesproduccionEntityTitle_idOrdenProduccion}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_cantidadGenerar}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.cantidadGenerar}" title="#{bundle.ViewOrdenesproduccionEntityTitle_cantidadGenerar}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_fecHoraInicio}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.fecHoraInicio}" title="#{bundle.ViewOrdenesproduccionEntityTitle_fecHoraInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_fecHoraFin}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.fecHoraFin}" title="#{bundle.ViewOrdenesproduccionEntityTitle_fecHoraFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_cantResiduo}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.cantResiduo}" title="#{bundle.ViewOrdenesproduccionEntityTitle_cantResiduo}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_cantDefecto}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.cantDefecto}" title="#{bundle.ViewOrdenesproduccionEntityTitle_cantDefecto}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_defectuosos}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.defectuosos}" title="#{bundle.ViewOrdenesproduccionEntityTitle_defectuosos}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_residuo}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.residuo}" title="#{bundle.ViewOrdenesproduccionEntityTitle_residuo}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_usuarioProduccion}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.usuarioProduccion}" title="#{bundle.ViewOrdenesproduccionEntityTitle_usuarioProduccion}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesproduccionEntityLabel_maquinasidMaquina}"/>
+                    <h:outputText value="#{ordenesproduccionEntityController.selected.maquinasidMaquina}" title="#{bundle.ViewOrdenesproduccionEntityTitle_maquinasidMaquina}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ordenesproduccionEntityController.destroyAndView}" value="#{bundle.ViewOrdenesproduccionEntityDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOrdenesproduccionEntityEditLink}"/>
+                <br />
+                <h:commandLink action="#{ordenesproduccionEntityController.prepareCreate}" value="#{bundle.ViewOrdenesproduccionEntityCreateLink}" />
+                <br />
+                <h:commandLink action="#{ordenesproduccionEntityController.prepareList}" value="#{bundle.ViewOrdenesproduccionEntityShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOrdenesproduccionEntityIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
